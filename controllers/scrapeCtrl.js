@@ -1,6 +1,8 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var db = require("../models");
+
+
 module.exports = {
   scrape: function(req, res){
       // First, we grab the body of the html with request
@@ -23,16 +25,15 @@ module.exports = {
 
           // Create a new Article using the `result` object built from scraping
           db.Article.create(result)
-            .then(function (dbArticle) {
+            .then(function(dbArticle) {
               // View the added result in the console
               console.log(dbArticle);
             })
-            .catch(function (err) {
+            .catch(function(err) {
               // If an error occurred, send it to the client
               return res.json(err);
             });
         });
-
         // If we were able to successfully scrape and save an Article, send a message to the client
         res.send("Scrape Complete");
       });

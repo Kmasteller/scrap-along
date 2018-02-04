@@ -1,11 +1,8 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 // Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
 // var request = require("request");
 // var cheerio = require("cheerio");
 
@@ -18,8 +15,6 @@ var PORT = process.env.PORT || 3000;
 var app = express();
 
 // Configure middleware
-
-// Use morgan logger for logging requests
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -30,9 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-// By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/tsHeadlines";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -41,9 +35,8 @@ mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
-// Routes
-
-// A GET route for scraping the echojs website
+// ROUTES
+// A GET route for scraping the twisted sifter website
 require("./routes/apiRoutes.js")(app)
 require("./routes/viewRoutes.js")(app)
 
