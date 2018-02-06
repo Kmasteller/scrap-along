@@ -5,10 +5,10 @@ const db = require("../models");
 
 module.exports = function(app){
 
-  app.get("/", scrapeCtrl.scrape );
+  app.get("/scrape", scrapeCtrl.scrape );
 
   app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "views/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
   // Route for getting all Articles from the db

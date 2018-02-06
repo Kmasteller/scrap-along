@@ -1,27 +1,29 @@
+// Dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 const path = require("path");
 
+// Initialize Express
+const app = express();
+
+// Set port
+const PORT = process.env.PORT || 3000;
+
 // Our scraping tools
 const request = require("request");
 const cheerio = require("cheerio");
 
-const PORT = process.env.PORT || 3000;
-
-// // Require all models
-const db = require("./models");
-
-// Initialize Express
-const app = express();
+// Require all models
+// const db = require("./models");
 
 // Use body-parser for JSON
 app.use(bodyParser.json());
 // Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 // Use express.static to serve the public folder as a static directory
-app.use(express.static("./public"));
+app.use(express.static(__dirname + "/public"));
 
 // Configure middleware
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
