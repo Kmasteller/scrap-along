@@ -1,6 +1,7 @@
-var scrapeCtrl = require('../controllers/scrapeCtrl');
+const scrapeCtrl = require('../controllers/scrapeCtrl');
+const path = require("path");
 
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app){
 
