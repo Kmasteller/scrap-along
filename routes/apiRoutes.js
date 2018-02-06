@@ -6,6 +6,10 @@ module.exports = function(app){
 
   app.get("/", scrapeCtrl.scrape );
 
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "views/index.html"));
+  });
+
   // Route for getting all Articles from the db
   app.get("/articles", function (req, res) {
     // Grab every document in the Articles collection

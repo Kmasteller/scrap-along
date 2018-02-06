@@ -1,27 +1,30 @@
-var request = require("request");
-var cheerio = require("cheerio");
-var db = require("../models");
-
+const express = require("express");
+const request = require("request");
+const cheerio = require("cheerio");
+const db = require("../models");
 
 module.exports = {
   scrape: function(req, res){
       // First, we grab the body of the html with request
-      request.get("http://www.twistedsifter.com/", function (err, response, html) {
+      request("http://www.twistedsifter.com/", function (err, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
+
+        var artTitleArray = [];
 
         // Now, we grab every h2 within an article tag, and do the following:
         $("h2.headline").each(function (i, element) {
           // Save an empty result object
           var result = {};
-          console.log(result);
           // Add the text and href of every link, and save them as properties of the result object
-          result.title = $(this)
-            .children("a")
-            .text();
-          result.link = $(this)
-            .children("a")
-            .attr("href");
+          result.title = $(element)
+            .children()
+            .text()
+            .trim();
+          result.link = $(element)
+            .children()
+            .attr("href")
+            .trim();
 
           // Create a new Article using the `result` object built from scraping
           db.Article.create(result)
