@@ -29,19 +29,12 @@ app.use(express.static(__dirname + "/public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// // Set mongoose to leverage built in JavaScript ES6 Promises
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI, {
-//   useMongoClient: true
-// });
+// Connect to the Mongo DB or localhost
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/tsScraperdb";
 
-// Connect to the Mongo DB or localhost?
-// if(process.env.NODE_ENV == 'production'){
-//   mongoose.connect('mongodb://heroku_60zpcwg0:ubn0n27pi2856flqoedo9glvh8@ds119578.mlab.com:19578/heroku_60zpcwg0');
-// } else {
-//   mongoose.connect('mongodb://localhost/news-scraper');
-// }
-
+// Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // ROUTES
 // A GET route for scraping the twisted sifter website

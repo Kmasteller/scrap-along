@@ -7,9 +7,6 @@ module.exports = function(app){
 
   app.get("/scrape", scrapeCtrl.scrape );
 
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-  });
 
   // Route for getting all Articles from the db
   app.get("/articles", function (req, res) {
@@ -17,11 +14,11 @@ module.exports = function(app){
     db.Article.find({})
       .then(function (dbArticle) {
         // If we were able to successfully find Articles, send them back to the client
-        res.json(dbArticle);
+      res.json(dbArticle);
       })
       .catch(function (err) {
         // If an error occurred, send it to the client
-        res.json(err);
+      res.json(err);
       });
   });
 
@@ -33,11 +30,11 @@ module.exports = function(app){
       .populate("note")
       .then(function (dbArticle) {
         // If we were able to successfully find an Article with the given id, send it back to the client
-        res.json(dbArticle);
+      res.json(dbArticle);
       })
       .catch(function (err) {
         // If an error occurred, send it to the client
-        res.json(err);
+      res.json(err);
       });
   });
 
@@ -59,6 +56,10 @@ module.exports = function(app){
         // If an error occurred, send it to the client
         res.json(err);
       });
+  });
+
+  app.get("*", function (req, res) {
+    res.render("index");
   });
 
 }

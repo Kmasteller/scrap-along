@@ -11,7 +11,7 @@ module.exports = {
         var $ = cheerio.load(html);
 
         // var artTitleArray = [];
-
+        // console.log($);
         // Now, we grab every h2 within an article tag, and do the following:
         $("h2.headline").each(function (i, element) {
          
@@ -25,8 +25,13 @@ module.exports = {
             .attr("href")
             .trim();
 
+          var article = {
+              title,
+              link
+          }
+
           // Create a new Article using the `result` object built from scraping
-          db.Article.create(res)
+          db.Article.create(article)
             .then(function(dbArticle) {
               // View the added result in the console
               console.log(dbArticle);
@@ -38,7 +43,7 @@ module.exports = {
         });
         // If we were able to successfully scrape and save an Article, send a message to the client
         res.send("Scrape Complete");
-        console.log("++++" + res + "+++++");
+        // console.log("++++", res, "+++++");
       });
     }
   }
