@@ -42,7 +42,7 @@ module.exports = function(app){
   app.post("/articles/:id", function (req, res) {
     // Create a new note and pass the req.body to the entry
     db.Note.create(req.body)
-      .then(function (dbNote) {
+      .then(function(dbNote) {
         // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
         // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
         // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
@@ -61,5 +61,4 @@ module.exports = function(app){
   app.get("*", function (req, res) {
     res.render("index");
   });
-
 }
