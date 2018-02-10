@@ -39,7 +39,7 @@ module.exports = {
             })
             .catch(function(err) {
               // If an error occurred, send it to the client
-              return console.log(err);
+              console.log(err);
               res.redirect("/")
             });
         });
