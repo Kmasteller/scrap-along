@@ -39,7 +39,8 @@ module.exports = {
             })
             .catch(function(err) {
               // If an error occurred, send it to the client
-              return res.json(err);
+              return console.log(err);
+              res.redirect("/")
             });
         });
         // If we were able to successfully scrape and save an Article, send a message to the client
