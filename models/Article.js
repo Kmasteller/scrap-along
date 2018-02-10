@@ -7,7 +7,8 @@ var ArticleSchema = new Schema({
   
   title: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   
   link: {
@@ -16,11 +17,11 @@ var ArticleSchema = new Schema({
   },
 
   //Stores note to an ID
-  note: {
+  note:[{
     type: Schema.Types.ObjectId,
     ref: "Note"
-  }
-});
+  }]
+  });
 
 // Create model from Schema
 var Article = mongoose.model("Article", ArticleSchema);

@@ -42,7 +42,7 @@ module.exports = {
             });
         });
         // If we were able to successfully scrape and save an Article, send a message to the client
-        res.send("Scrape Complete");
+        res.redirect("/")
         // console.log("++++", res, "+++++");
       });
     }

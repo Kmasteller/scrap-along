@@ -1,8 +1,21 @@
 <div id="wrapper">
-  <h1>Note Scraper</h1>
+  <h1>Twisted Sifter Sorter</h1>
   <h2>
-    <i>If you can do this...the homework should be no problem.</i>
+    <i>Enjoy... and be sure to leave a comment...</i>
   </h2>
-  <div id="articles"></div>
-  <div id="notes"></div>
+  <div id="articles">
+  <h2> Articles </h2>
+    
+  {{#each dbArticle}}
+    <p data-id={{this._id}}> {{this.title}} </p> <br>
+    <a href={{this.link}}>{{this.link}}</a><hr>
+  {{/each}}
+  </div>
+  
+  
+  <div id="notes">
+
+  </div>
+   {{!-- <h2>comment</h2>
+  <div id="commentLog"></div> --}}
 </div>

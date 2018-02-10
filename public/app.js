@@ -1,9 +1,9 @@
 // Grab the articles
-$.getJSON("/articles", function(data) {
-  for (var i = 0; i < data.length; i++) {
-    $("#articles").append("<p>" + data[i].title + "<br />" + data[i].link + "</p><hr>");
-  }
-});
+// $.getJSON("/articles", function(data) {
+//   for (var i = 0; i < data.length; i++) {
+//     $("#articles").append("<p data-id=" + data[i]._id+">" + data[i].title + "<br />" + data[i].link + "</p><hr>");
+//   }
+// });
 
 // Onclick event for tag
 $(document).on("click", "p", function() {
@@ -26,11 +26,21 @@ $(document).on("click", "p", function() {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append(`  <h2>comment</h2> <div id="commentLog"></div>`)
 
       // If there's a note in the article
       if (data.note) {
-        $("#titleinput").val(data.note.title);
-        $("#bodyinput").val(data.note.body);
+        var comentLogDOM = $("#commentLog")
+        for(var i = 0; i < data.note.length; i++){
+          var pTitle = $("<h2>").append(data.note[i].title);
+          var pComment = $("<p>").append(data.note[i].comment);
+          comentLogDOM.append(pTitle).append(pComment).append($("<hr>"))
+        }
+
+        
+
+        // $("#titleinput").val(data.note[0].title);
+        // $("#bodyinput").val(data.note[0].comment);
       }
     });
 });

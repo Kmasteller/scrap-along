@@ -39,7 +39,7 @@ mongoose.connect(MONGODB_URI);
 // ROUTES
 // A GET route for scraping the twisted sifter website
 require("./routes/apiRoutes.js")(app)
-require("./routes/viewRoutes.js")(app)
+// require("./routes/viewRoutes.js")(app)
 
 // Start the server
 app.listen(PORT, function() {
