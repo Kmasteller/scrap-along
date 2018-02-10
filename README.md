@@ -1,9 +1,9 @@
-* Scrap Along APP
+#### Scrap Along APP
 
-*** Mongoose Scraper ***
+### *** Mongoose Scraper ***
 
-By Kenneth Masteller
+## By Kenneth Masteller
 
-Please note I altered functionality for so if you desire to scrape, you will need to go to /scrape route.  I didn't like it updated onload if I was commenting back and forth with someone.
+A Mongoose scraper using the Cheerio library to help scrape Twisted Sifter (twistedsifter.com) which renders an article and link (no summary available) on the front end.  There is then the option of sharing notes across the platform, persisting through Mongo DB.
 
-Thank you!
+© 2018 Kenneth Masteller
